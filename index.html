@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волшебное дерево на CSS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0f172a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .header-content {
+            text-align: center;
+            margin-bottom: 20px;
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        .header-content h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background-color: #a18cd1;
+        }
+
+        .header-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #94a3b8;
+        }
+
+        .canvas {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 600px;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .tree {
+            position: relative;
+        }
+
+        .trunk {
+            position: relative;
+            width: 10px;
+            height: 500px;
+            margin: 0 auto;
+            border-radius: 25px;
+            background: linear-gradient(to right, #2d3748, #1a202c);
+        }
+
+        .branch {
+            position: absolute;
+            width: 5px;
+            border-radius: 25px;
+            background: linear-gradient(to right, #2d3748, #1a202c);
+            transform-origin: bottom center;
+        }
+
+        .branch:nth-child(even) {
+            transform: rotate(60deg);
+        }
+
+        .branch:nth-child(odd) {
+            transform: rotate(-60deg);
+        }
+
+        .branch:nth-child(1) { top: 240px; height: 160px; }
+        .branch:nth-child(2) { top: 210px; height: 140px; }
+        .branch:nth-child(3) { top: 170px; height: 150px; }
+        .branch:nth-child(4) { top: 140px; height: 130px; }
+        .branch:nth-child(5) { top: 100px; height: 130px; }
+        .branch:nth-child(6) { top: 70px;  height: 110px; }
+        .branch:nth-child(7) { top: 30px;  height: 100px; }
+        .branch:nth-child(8) { top: 0px;   height: 90px; }
+
+        .leaf {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-radius: 75% 0 75% 0;
+            background: linear-gradient(to right, #fbc2eb, #a18cd1);
+        }
+
+        .leaf:nth-child(1) { top: 5px; }
+        .leaf:nth-child(2) { top: 30px; }
+        .leaf:nth-child(3) { top: 55px; }
+
+        .leaf:nth-child(odd) {
+            left: 100%;
+            transform-origin: 0% 100%;
+            animation-name: leaf-odd-grow;
+            animation-duration: 4s;
+            animation-fill-mode: both;
+        }
+
+        .leaf:nth-child(even) {
+            left: -150%;
+            transform-origin: 50% 100%;
+            animation-name: leaf-even-grow;
+            animation-duration: 4s;
+            animation-fill-mode: both;
+        }
+
+        .leaf:nth-child(1) { animation-delay: 3.5s; }
+        .leaf:nth-child(2) { animation-delay: 3.0s; }
+        .leaf:nth-child(3) { animation-delay: 2.5s; }
+
+        .fruit {
+            position: absolute;
+            top: -15px;
+            left: -3.5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fbbf24;
+            box-shadow: 0 0 15px #fbbf24, 0 0 30px #f59e0b;
+            animation-name: fruit-grow;
+            animation-duration: 2s;
+            animation-fill-mode: both;
+            animation-delay: 5s;
+        }
+
+        @keyframes leaf-odd-grow {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes leaf-even-grow {
+            0% { transform: rotate(-90deg) scale(0); }
+            100% { transform: rotate(-90deg) scale(1); }
+        }
+
+        @keyframes fruit-grow {
+            0% { 
+                transform: scale(0); 
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% { 
+                transform: scale(1); 
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-content">
+        <h1>Волшебное дерево</h1>
+        <p>Эта анимация создана исключительно на чистом CSS.</p>
+    </div>
+
+    <div class="canvas">
+        <div class="tree">
+            <div class="trunk">
+                <!-- 1 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 2 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 3 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 4 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 5 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 6 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 7 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+                <!-- 8 -->
+                <div class="branch">
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="leaf"></div>
+                    <div class="fruit"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
